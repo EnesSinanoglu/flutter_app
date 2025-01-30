@@ -8,17 +8,17 @@ class HomeScreen extends StatelessWidget {
 
   final List<Map<String, String>> recipes = const [
     {
-      "image": "https://example.com/yemek1.jpg",
+      "image": "assets/images/spagetti.jpg",
       "title": "Spaghetti Bolognese",
       "description": "Kıymalı, domates soslu klasik İtalyan makarnası."
     },
     {
-      "image": "https://example.com/yemek2.jpg",
+      "image": "assets/images/sushi.jpg",
       "title": "Sushi",
       "description": "Geleneksel Japon suşi çeşitleri."
     },
     {
-      "image": "https://example.com/yemek3.jpg",
+      "image": "assets/images/tacos.jpg",
       "title": "Tacos",
       "description": "Meksika mutfağının lezzetli taco tarifi."
     },
@@ -119,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Expanded(
-                          child: Image.network(
+                          child: Image.asset(
                             recipe["image"]!,
                             fit: BoxFit.cover,
                             width: double.infinity,
@@ -169,6 +169,9 @@ class HomeScreen extends StatelessWidget {
         onTap: (index) {
           // Sekme navigasyon işlemleri buraya eklenebilir
         },
+        selectedItemColor: Colors.black, // Seçili sekmenin yazı rengi siyah
+        unselectedItemColor:
+            Colors.black, // Seçili olmayan sekme yazı rengi siyah
       ),
     );
   }
