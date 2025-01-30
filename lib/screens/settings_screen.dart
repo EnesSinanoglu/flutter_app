@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  String _selectedLanguage = 'Türkçe';
 
   @override
   Widget build(BuildContext context) {
@@ -9,23 +16,58 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Ayarlar'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // Hesap ayarları
             ListTile(
-              title: Text('Hesap Ayarları'),
-              leading: Icon(Icons.account_circle),
+              title: const Text('Hesap Ayarları'),
+              leading: const Icon(Icons.account_circle),
+              onTap: () {
+                // Hesap ayarları işlemleri yapılabilir
+              },
             ),
+            // Gizlilik ayarları
             ListTile(
-              title: Text('Gizlilik Ayarları'),
-              leading: Icon(Icons.security),
+              title: const Text('Gizlilik Ayarları'),
+              leading: const Icon(Icons.security),
+              onTap: () {
+                // Gizlilik ayarları işlemleri yapılabilir
+              },
             ),
+            // Bildirim ayarları
             ListTile(
-              title: Text('Bildirim Ayarları'),
-              leading: Icon(Icons.notifications),
+              title: const Text('Bildirim Ayarları'),
+              leading: const Icon(Icons.notifications),
+              onTap: () {
+                // Bildirim ayarları işlemleri yapılabilir
+              },
             ),
-            // Daha fazla ayar ekleyebilirsin
+            // Dil seçeneği
+            ListTile(
+              title: const Text('Dil Seçimi'),
+              leading: const Icon(Icons.language),
+              trailing: DropdownButton<String>(
+                value: _selectedLanguage,
+                items: const [
+                  DropdownMenuItem(
+                    value: 'Türkçe',
+                    child: Text('Türkçe'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'English',
+                    child: Text('English'),
+                  ),
+                  // Buraya başka diller ekleyebilirsiniz
+                ],
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedLanguage = newValue!;
+                  });
+                },
+              ),
+            ),
           ],
         ),
       ),
