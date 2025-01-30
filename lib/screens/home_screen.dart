@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart'; // go_router import et
+import 'package:flutter_app/screens/settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,6 +16,16 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(CupertinoIcons.bell),
             onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(CupertinoIcons.profile_circled),
+            onPressed: () {
+              // Profil sayfasına gitmek için
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
+            },
           ),
         ],
       ),
@@ -59,9 +69,11 @@ class HomeScreen extends StatelessWidget {
               leading: const Icon(CupertinoIcons.settings),
               title: const Text('Ayarlar'),
               onTap: () {
-                // Ayarlara yönlendirme
-                context.go(
-                    '/settings'); // Ayarlara gitmek için "/settings" yoluna yönlendirme
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SettingsScreen()),
+                );
               },
             ),
           ],
@@ -71,10 +83,15 @@ class HomeScreen extends StatelessWidget {
       // Ana içerik
       body: Column(
         children: [
+          const SizedBox(height: 20),
+          // Başka içerikler eklenebilir, örneğin kategoriler veya haberler
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(16),
-              child: const Text('Ana Sayfa İçeriği'),
+              child: const Text(
+                'Ana Sayfa İçeriği',
+                style: TextStyle(fontSize: 18),
+              ),
             ),
           ),
         ],
@@ -95,9 +112,34 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(CupertinoIcons.person),
             label: 'Profil',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.folder),
+            label: 'Kategoriler', // Kategoriler sekmesi
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.question_circle),
+            label: 'Yardım', // Yardım sekmesi
+          ),
         ],
         onTap: (index) {
-          // Navigasyon işlemleri buraya gelecek
+          // Buraya navigasyon işlevi ekleyebilirsiniz
+          switch (index) {
+            case 0:
+              // Ana Sayfa
+              break;
+            case 1:
+              // Keşfet
+              break;
+            case 2:
+              // Profil
+              break;
+            case 3:
+              // Kategoriler
+              break;
+            case 4:
+              // Yardım
+              break;
+          }
         },
       ),
     );
