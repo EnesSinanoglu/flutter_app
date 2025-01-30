@@ -13,6 +13,7 @@ class DetailScreen extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _DetailScreenState createState() => _DetailScreenState();
 }
 
@@ -61,11 +62,11 @@ class _DetailScreenState extends State<DetailScreen> {
             const SizedBox(height: 20),
 
             // Yorumları göster
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'Yorumlar',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
