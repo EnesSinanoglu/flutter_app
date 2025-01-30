@@ -9,7 +9,7 @@
 
 ## Proje Hakkında
 
-[Projenin kısa tanımı ve amacı buraya yazılacak]
+[Projem dünyanın her yerinde ki yemeklerinin tariflerini tek bir uygulamada toplamak]
 
   
 

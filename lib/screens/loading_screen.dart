@@ -1,6 +1,5 @@
 import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
@@ -10,63 +9,66 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 40, 158, 255),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Logo ve yükleme göstergesi bölümü
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Column(
               children: [
-                // Logo bölümü
-                Container(
-                  child: Container(
-                    width: 200,
-                    height: 200,
-                    child: Image.asset(
-                      'assets/images/steak_4521028.png',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-
-                Positioned(
-                  top: 0, // Metni logonun alt kısmına yerleştirmek için
-                  child: Container(
-                    color: const Color.fromARGB(255, 255, 255, 255)
-                        .withOpacity(0.5),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 8.0, vertical: 4.0),
-                    child: Text(
-                      'World Food',
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 255, 167, 3),
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                // Logo ve isim bölümü
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // Logo bölümü
+                    SizedBox(
+                      width: 200,
+                      height: 200,
+                      child: Image.asset(
+                        'assets/images/steak_4521028.png',
+                        fit: BoxFit.contain,
                       ),
                     ),
+                    // Uygulama ismi metni
+                    Positioned(
+                      top: -40, // Metni logonun üst kısmına yerleştirmek için
+                      child: Container(
+                        color: Colors.black.withOpacity(0.5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        child: const Text(
+                          'World Food',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                // Burada animasyon üzerine tıklanabilir alan ekliyoruz
+                InkWell(
+                  onTap: () => context.go("/home"),
+                  child: DotLottieLoader.fromAsset(
+                    "assets/motions/loading.lottie",
+                    frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
+                      if (dotlottie != null) {
+                        return Lottie.memory(
+                            dotlottie.animations.values.single);
+                      } else {
+                        return Container();
+                      }
+                    },
                   ),
                 ),
 
-                // Yükleniyor yazısı
-                CircularProgressIndicator()
-
-                //Inkwell(
-                //onTap: () => context.go("/home"),
-                //),
-                //)
-
-                //DotLottieLoader.fromAsset("assets/motions/loading.lottie",
-                //frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
-                //if (dotlottie != null) {
-                //return Lottie.memory(dotlottie.animations.values.single);
-                //} else {
-                //return Container();
-                //}
-                //}),
-
-                //SizedBox(height: 20),
+                const SizedBox(
+                    height: 100), // Yükleme animasyonu ile alt boşluk
               ],
             ),
           ),

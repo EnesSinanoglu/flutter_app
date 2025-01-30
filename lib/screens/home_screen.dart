@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart'; // go_router import et
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 40, 158, 255),
       // AppBar
       appBar: AppBar(
         title: const Text('Ana Sayfa'),
@@ -26,16 +28,16 @@ class HomeScreen extends StatelessWidget {
             Container(
               height: 200,
               color: Colors.blue,
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
+                  Icon(
                     CupertinoIcons.person_circle,
                     size: 80,
                     color: Colors.white,
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
+                  SizedBox(height: 10),
+                  Text(
                     'Kullanıcı Adı',
                     style: TextStyle(
                       color: Colors.white,
@@ -57,7 +59,9 @@ class HomeScreen extends StatelessWidget {
               leading: const Icon(CupertinoIcons.settings),
               title: const Text('Ayarlar'),
               onTap: () {
-                Navigator.pop(context);
+                // Ayarlara yönlendirme
+                context.go(
+                    '/settings'); // Ayarlara gitmek için "/settings" yoluna yönlendirme
               },
             ),
           ],
