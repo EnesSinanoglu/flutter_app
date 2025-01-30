@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/screens/detail_screen.dart';
 import 'package:flutter_app/screens/settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  final List<Map<String, String>> recipes = const [
+    {
+      "image": "https://example.com/yemek1.jpg",
+      "title": "Spaghetti Bolognese",
+      "description": "Kıymalı, domates soslu klasik İtalyan makarnası."
+    },
+    {
+      "image": "https://example.com/yemek2.jpg",
+      "title": "Sushi",
+      "description": "Geleneksel Japon suşi çeşitleri."
+    },
+    {
+      "image": "https://example.com/yemek3.jpg",
+      "title": "Tacos",
+      "description": "Meksika mutfağının lezzetli taco tarifi."
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 40, 158, 255),
-      // AppBar
       appBar: AppBar(
         title: const Text('Ana Sayfa'),
         actions: [
@@ -20,7 +38,6 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(CupertinoIcons.profile_circled),
             onPressed: () {
-              // Profil sayfasına gitmek için
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const SettingsScreen()),
@@ -29,12 +46,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-
-      // Drawer (Yan Menü)
       drawer: Drawer(
         child: Column(
           children: [
-            // Drawer Header
             Container(
               height: 200,
               color: Colors.blue,
@@ -49,21 +63,15 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 10),
                   Text(
                     'Kullanıcı Adı',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ],
               ),
             ),
-            // Menü öğeleri
             ListTile(
               leading: const Icon(CupertinoIcons.home),
               title: const Text('Ana Sayfa'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: () => Navigator.pop(context),
             ),
             ListTile(
               leading: const Icon(CupertinoIcons.settings),
@@ -79,25 +87,62 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
-      // Ana içerik
       body: Column(
         children: [
           const SizedBox(height: 20),
-          // Başka içerikler eklenebilir, örneğin kategoriler veya haberler
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: const Text(
-                'Ana Sayfa İçeriği',
-                style: TextStyle(fontSize: 18),
+            child: GridView.builder(
+              padding: const EdgeInsets.all(8.0),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
               ),
+              itemCount: recipes.length,
+              itemBuilder: (context, index) {
+                final recipe = recipes[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailScreen(
+                          imageUrl: recipe["image"]!,
+                          title: recipe["title"]!,
+                          description: recipe["description"]!,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    elevation: 4,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Image.network(
+                            recipe["image"]!,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            recipe["title"]!,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
       ),
-
-      // Alt navigasyon çubuğu
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -114,32 +159,15 @@ class HomeScreen extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.folder),
-            label: 'Kategoriler', // Kategoriler sekmesi
+            label: 'Kategoriler',
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.question_circle),
-            label: 'Yardım', // Yardım sekmesi
+            label: 'Yardım',
           ),
         ],
         onTap: (index) {
-          // Buraya navigasyon işlevi ekleyebilirsiniz
-          switch (index) {
-            case 0:
-              // Ana Sayfa
-              break;
-            case 1:
-              // Keşfet
-              break;
-            case 2:
-              // Profil
-              break;
-            case 3:
-              // Kategoriler
-              break;
-            case 4:
-              // Yardım
-              break;
-          }
+          // Sekme navigasyon işlemleri buraya eklenebilir
         },
       ),
     );
