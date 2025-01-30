@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/screens/detail_screen.dart';
+import 'package:flutter_app/screens/kategoriler_screen.dart';
 import 'package:flutter_app/screens/settings_screen.dart';
+import 'package:flutter_app/screens/kategoriler_screen.dart'; // Kategoriler sayfası
+import 'package:flutter_app/screens/yardım_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, String>> recipes = const [
     {
       "image": "assets/images/spagetti.jpg",
@@ -23,6 +31,40 @@ class HomeScreen extends StatelessWidget {
       "description": "Meksika mutfağının lezzetli taco tarifi."
     },
   ];
+
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        // Ana Sayfa
+        break;
+      case 1:
+        // Keşfet
+        break;
+      case 2:
+        // Profil
+        break;
+      case 3:
+        // Kategoriler sayfasına git
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const KategorilerScreen()),
+        );
+        break;
+      case 4:
+        // Yardım sayfasına git
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const YardimScreen()),
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,6 +186,8 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.home),
@@ -166,12 +210,8 @@ class HomeScreen extends StatelessWidget {
             label: 'Yardım',
           ),
         ],
-        onTap: (index) {
-          // Sekme navigasyon işlemleri buraya eklenebilir
-        },
-        selectedItemColor: Colors.black, // Seçili sekmenin yazı rengi siyah
-        unselectedItemColor:
-            Colors.black, // Seçili olmayan sekme yazı rengi siyah
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black,
       ),
     );
   }
