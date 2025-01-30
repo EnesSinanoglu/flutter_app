@@ -3,8 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/screens/detail_screen.dart';
 import 'package:flutter_app/screens/kategoriler_screen.dart';
 import 'package:flutter_app/screens/settings_screen.dart';
-import 'package:flutter_app/screens/kategoriler_screen.dart'; // Kategoriler sayfası
-import 'package:flutter_app/screens/yardım_screen.dart';
+import 'package:flutter_app/screens/yardım_screen.dart'; // Yardım ekranı
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,13 +40,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
     switch (index) {
       case 0:
-        // Ana Sayfa
+        // Ana Sayfa, şu an bu ekran zaten gösteriliyor.
         break;
       case 1:
-        // Keşfet
+        // Keşfet sayfası, burayı doldurabilirsin ileride
         break;
       case 2:
-        // Profil
+        // Profil sayfası, buraya da profil ekranı eklenebilir.
         break;
       case 3:
         // Kategoriler sayfasına git
