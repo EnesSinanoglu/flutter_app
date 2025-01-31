@@ -21,17 +21,17 @@
 
 -  **Takım Üyeleri:**
 
-- X [GitHub](GitHub linki)
+- https://github.com/EnesSinanoglu
 
   
 
 ## Özellikler
 
-- [Ana özellik 1]
+- Bütün ülkenin yemeklerini tek uygulamada olması
 
-- [Ana özellik 2]
+- Yorum seçeneği
 
-- [Ana özellik 3]
+- Tarif
 
   
 
@@ -149,7 +149,7 @@ lib/
 
 ## İletişim
 
-- Proje Bağlantısı: [GitHub repository linki]
+- Proje Bağlantısı: https://github.com/EnesSinanoglu/flutter_app.git
 
 - İstinye Üniversitesi: [https://www.istinye.edu.tr/](https://www.istinye.edu.tr/)
 
