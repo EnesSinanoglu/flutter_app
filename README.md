@@ -123,7 +123,7 @@ lib/
 
 ## Ekran Görüntüleri
 
-[Uygulama ekran görüntüleri buraya eklenecek]
+[Uygulama ekran görüntüleri buraya eklenecek
 
   
 
